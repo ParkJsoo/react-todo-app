@@ -20,7 +20,6 @@ export default function List({todoData, setTodoData}) {
 
   const handleClick = (id) => {
     let newTodoData = todoData.filter((data) => data.id !== id);
-    console.log('new : ', newTodoData);
     setTodoData(newTodoData);
   };
 
