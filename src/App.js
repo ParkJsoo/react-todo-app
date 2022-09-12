@@ -1,24 +1,32 @@
 import './App.css';
-import {useState} from 'react';
-import Lists      from './components/Lists';
-import Form       from './components/Form';
+import {useState, useCallback} from 'react';
+import Lists                   from './components/Lists';
+import Form                    from './components/Form';
 
 export default function App() {
   console.log('App Component');
 
   const [todoData, setTodoData] = useState([
     {
-      id: '1',
-      title: '공부하기',
+      id:        '1',
+      title:     '공부하기',
       completed: false
     },
     {
-      id: '2',
-      title: '청소하기',
+      id:        '2',
+      title:     '청소하기',
       completed: true
     }
   ]);
   const [value, setValue] = useState('');
+
+  const handleClick = useCallback(
+    (id) => {
+      let newTodoData = todoData.filter((data) => data.id !== id);
+      setTodoData(newTodoData);
+    },
+    [todoData]
+  );
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -42,7 +50,7 @@ export default function App() {
           <h1>할 일 목록</h1>
         </div>
 
-        <Lists todoData={todoData} setTodoData={setTodoData}/>
+        <Lists handleClick={handleClick} todoData={todoData} setTodoData={setTodoData}/>
 
         <Form handleSubmit={handleSubmit} value={value} setValue={setValue}/>
       </div>
