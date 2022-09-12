@@ -1,10 +1,23 @@
-import React, {useState} from 'react';
 import './App.css';
-import Lists             from './components/Lists';
-import Form              from './components/Form';
+import {useState} from 'react';
+import Lists      from './components/Lists';
+import Form       from './components/Form';
 
 export default function App() {
-  const [todoData, setTodoData] = useState([]);
+  console.log('App Component');
+
+  const [todoData, setTodoData] = useState([
+    {
+      id: '1',
+      title: '공부하기',
+      completed: false
+    },
+    {
+      id: '2',
+      title: '청소하기',
+      completed: true
+    }
+  ]);
   const [value, setValue] = useState('');
 
   const handleSubmit = (e) => {
